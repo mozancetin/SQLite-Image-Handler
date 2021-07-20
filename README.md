@@ -6,6 +6,5 @@ Simple to use image handler for python sqlite3.
 - [ ] Add different types of images (Right now just png is supported)
 - [ ] Add more explanation to functions
 - [ ] Add deletePhoto, updatePhoto functions
-- [ ] Add os things like save desktop if 
 - [ ] Raise some errors
 - [ ] Add Usage to readme
