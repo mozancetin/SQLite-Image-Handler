@@ -8,3 +8,4 @@ Simple to use image handler for python sqlite3.
 - [ ] Add deletePhoto, updatePhoto functions
 - [ ] Add os things like save desktop if 
 - [ ] Raise some errors
+- [ ] Add Usage to readme
