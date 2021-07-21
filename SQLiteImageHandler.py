@@ -1,5 +1,7 @@
 import sqlite3
 import os
+from sqlite3.dbapi2 import Error
+from typing import NewType
 
 class SQLiteImageHandler():
 
@@ -8,53 +10,80 @@ class SQLiteImageHandler():
         self.tableName = tableName
         self.startConnection()
 
-    def photoSelector(self, path : str = None):
-        if path == None:
-            print("Path can't left blank!")
-            return
-
-        with open(path, "rb") as file:
-            byteContent = file.read()
-
-        objects = path.split(".")
-        extensionType = objects[-1]
-        print(extensionType)
-        return byteContent, extensionType
-
     def startConnection(self):
+        """
+        ### Explanation
+        Starts the connection with SQLite Database.
+        """
+
         self.connection = sqlite3.connect(f"{self.databasePath}")
         self.cursor = self.connection.cursor()
         self.cursor.execute(f"CREATE TABLE IF NOT EXISTS {self.tableName} (Name TEXT, Data BLOB, Type TEXT)")
         self.connection.commit()
 
-    def addPhoto(self, name : str, photoByte : bytes, extensionType : str = "png"):
-        if self.isPhotoExists(name):
-            print("There is an image with this name!")
-            return False
+    def imageSelector(self, path : str = None):
+        """
+        ### Explanation
+        Selects an image and returns the image's bytes content and extension type.
+        
+        -------------------------------------------------
+        ### Parameters
+        - path[str]: The path of the picture you choose.
+
+        -------------------------------------------------
+        ### Returns
+        - bytesContent[bytes]
+        - extensionType[str]
+        -------------------------------------------------
+        """
+
+        if path == None:
+            raise ValueError("Path can't left blank!")
+
+        with open(path, "rb") as file:
+            bytesContent = file.read()
+
+        extensionType = os.path.splitext(path)[1][1:]
+        return bytesContent, extensionType
+
+    def addImage(self, imageName : str, imageBytes : bytes, extensionType : str = "png"):
+        """
+        ### Explanation
+        Adds an image to database.
+
+        -------------------------------------------------
+        ### Parameters
+        - imageName[str]:   Save name of image.
+        - imageBytes[bytes]: Bytes of new image.
+        - extensionType[str]: Extension type like png, jpg or something...
+        -------------------------------------------------
+        """
+
+        if self.isImageExists(imageName):
+            raise ValueError("There is an image with this name!")
         try:
-            self.cursor.execute(f"INSERT INTO {self.tableName} VALUES (?, ?, ?)", (name, photoByte, extensionType))
+            self.cursor.execute(f"INSERT INTO {self.tableName} VALUES (?, ?, ?)", (imageName, imageBytes, extensionType))
             self.connection.commit()
             print("Image successfully saved!")
         except Exception as error:
             print(error)
 
-    def getSavePhoto(self, photoName : str = None, savePath : str = "savedImage"):
+    def getSaveImage(self, imageName : str = None, savePath : str = "savedImage"):
         """
         ### Explanation
         Saves the previously saved image in the database as an image to the given path.
 
         -------------------------------------------------
         ### Parameters
-        - photoName[str]:   Name of photo in the database.
+        - imageName[str]:   Name of image in the database.
         - savePath[str]:    Save path. (default: savedImage.png)
         -------------------------------------------------
         """
-        if photoName == None:
-            print("Give me an image boss. (photoName parameter has not declared.)")
-            return
+        if imageName == None:
+            raise ValueError("Give me an image boss. (imageName parameter has not declared.)")
 
         try:
-            self.cursor.execute(f"SELECT * FROM {self.tableName} WHERE Name = ?", (photoName,))
+            self.cursor.execute(f"SELECT * FROM {self.tableName} WHERE Name = ?", (imageName,))
             data = self.cursor.fetchone()
             if data != None:
                 with open(savePath + "." + data[2], "wb") as file:
@@ -64,14 +93,85 @@ class SQLiteImageHandler():
         except Exception as error:
             print(error)
 
-    def isPhotoExists(self, photoName : str = None):
-        if photoName == None:
-            print("Photo name can't left blank!")
+    def isImageExists(self, imageName : str = None):
+        """
+        ### Explanation
+        Checks if image exists in database by image name.
+
+        -------------------------------------------------
+        ### Parameters
+        - imageName[str]:   Name of image in the database.
+
+        -------------------------------------------------
+        ### Returns
+        - isExists[bool]
+        -------------------------------------------------
+        """
+
+        if imageName == None:
+            raise ValueError("Image name can't left blank!")
         try:
-            self.cursor.execute(f"SELECT * FROM {self.tableName} WHERE Name = ?", (photoName,))
+            self.cursor.execute(f"SELECT * FROM {self.tableName} WHERE Name = ?", (imageName,))
             data = self.cursor.fetchone()
             if data != None:
                 return True
             return False
         except Exception as error:
-            print("Error occurred in isPhotoExists func. Error: " + str(error))
+            print("Error occurred in isImageExists func. Error: " + str(error))
+
+    def deleteImage(self, imageName : str = None):
+        """
+        ### Explanation
+        Deletes image by name in database.
+
+        -------------------------------------------------
+        ### Parameters
+        - imageName[str]:   Name of image in the database.
+        -------------------------------------------------
+        """
+
+        if imageName == None:
+            raise ValueError("Image name can't left blank!")
+        
+        if not self.isImageExists(imageName):
+            raise NameError("There is no image with this name in the database!")
+        
+        try:
+            self.cursor.execute(f"DELETE FROM {self.tableName} WHERE Name = ?", (imageName,))
+            self.connection.commit()
+            print("Image successfully deleted.")
+        except Exception as error:
+            print(error)
+
+    def updateImage(self, imageName : str = None, newImageBytes : bytes = None, extensionType : str = None):
+        """
+        ### Explanation
+        Updates image by name in database.
+
+        -------------------------------------------------
+        ### Parameters
+        - imageName[str]:   Name of image in the database.
+        - newImageBytes[bytes]: Bytes of new image.
+        - extensionType[str]: Extension type like png, jpg or something...
+        -------------------------------------------------
+        """
+
+        if imageName == None:
+            raise ValueError("Image name can't left blank!")
+        
+        if not self.isImageExists(imageName):
+            raise NameError("There is no image with this name in the database!")
+
+        if newImageBytes == None:
+            raise ValueError("New image bytes can't left blank!")
+
+        try:
+            if extensionType == None:
+                self.cursor.execute(f"UPDATE {self.tableName} SET Data = ? WHERE Name = ?", (newImageBytes, imageName))
+                self.connection.commit()
+            else:
+                self.cursor.execute(f"UPDATE {self.tableName} SET Data = ? , Type = ? WHERE Name = ?", (newImageBytes, extensionType, imageName))
+                self.connection.commit()
+            print("Image updated successfully")
+        except Exception as error:
+            print(error)
