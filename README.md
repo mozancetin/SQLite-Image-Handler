@@ -76,3 +76,4 @@ print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensi
 - [x] Raise some errors
 - [x] Add Usage to readme
 - [ ] Upload to pypi
+- [ ] Write a description of each function for README
