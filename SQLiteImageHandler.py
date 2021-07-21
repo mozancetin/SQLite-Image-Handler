@@ -1,7 +1,5 @@
 import sqlite3
 import os
-from sqlite3.dbapi2 import Error
-from typing import NewType
 
 class SQLiteImageHandler():
 
@@ -143,7 +141,7 @@ class SQLiteImageHandler():
         except Exception as error:
             print(error)
 
-    def updateImage(self, imageName : str = None, newImageBytes : bytes = None, extensionType : str = None):
+    def updateImage(self, imageName : str = None, newImageBytes : bytes = None, newExtensionType : str = None):
         """
         ### Explanation
         Updates image by name in database.
@@ -166,11 +164,11 @@ class SQLiteImageHandler():
             raise ValueError("New image bytes can't left blank!")
 
         try:
-            if extensionType == None:
+            if newExtensionType == None:
                 self.cursor.execute(f"UPDATE {self.tableName} SET Data = ? WHERE Name = ?", (newImageBytes, imageName))
                 self.connection.commit()
             else:
-                self.cursor.execute(f"UPDATE {self.tableName} SET Data = ? , Type = ? WHERE Name = ?", (newImageBytes, extensionType, imageName))
+                self.cursor.execute(f"UPDATE {self.tableName} SET Data = ? , Type = ? WHERE Name = ?", (newImageBytes, newExtensionType, imageName))
                 self.connection.commit()
             print("Image updated successfully")
         except Exception as error:
