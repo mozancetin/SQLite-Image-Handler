@@ -13,7 +13,7 @@ deleteImage | imageName : str | - |
 updateImage | imageName : str <br> newImageBytes : bytes <br> newExtensionType : str | - |
 
 # TODO's
-- [ ] Write a readme file
+- [x] Write a readme file
 - [x] Add different types of images (Right now just png is supported)
 - [x] Add more explanation to functions
 - [x] Add deletePhoto, updatePhoto functions
