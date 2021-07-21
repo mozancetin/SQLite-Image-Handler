@@ -2,13 +2,15 @@
 Simple to use image handler for python sqlite3.
 
 # Functions
-- startConnection
-- imageSelector
-- addImage
-- getSaveImage
-- isImageExists
-- deleteImage
-- updateImage
+Function Name | Parameters | Returns
+------------- | ---------- | -------
+startConnection | - | - |
+imageSelector | path : str | bytesContent : bytes <br> extensionType : str |
+addImage | imageName : str <br> imageBytes : bytes <br> extensionType : str | - |
+getSaveImage | imageName : str <br> savePath : str | - |
+isImageExists | imageName : str | isExists : bool |
+deleteImage | imageName : str | - |
+updateImage | imageName : str <br> newImageBytes : bytes <br> newExtensionType : str | - |
 
 # TODO's
 - [ ] Write a readme file
