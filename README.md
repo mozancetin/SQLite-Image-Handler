@@ -75,3 +75,4 @@ print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensi
 - [x] Add deletePhoto, updatePhoto functions
 - [x] Raise some errors
 - [x] Add Usage to readme
+- [ ] Upload to pypi
