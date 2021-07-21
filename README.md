@@ -1,4 +1,4 @@
-# SQLite-Image-Handler
+# SQLite Image Handler
 Simple to use image handler for python sqlite3.
 
 # TODO's
