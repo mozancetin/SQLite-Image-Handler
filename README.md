@@ -4,7 +4,7 @@ Simple to use image handler for python sqlite3.
 # Functions
 Function Name | Parameters | Returns
 ------------- | ---------- | -------
-**[init][1]** | **databasePath** : *str* <br> **tableName** : *str* | - |
+**[init](#-__init__(self,-databasePath-:-str-=-"database.db",-tableName-:-str-=-"images")-->-None)** | **databasePath** : *str* <br> **tableName** : *str* | - |
 **[startConnection][2]** | - | - |
 **[imageSelector][3]** | **path** : *str* | **bytesContent** : *bytes* <br> **extensionType** : *str* |
 **[addImage][4]** | **imageName** : *str* <br> **imageBytes** : *bytes* <br> **extensionType** : *str* | - |
@@ -17,7 +17,6 @@ Function Name | Parameters | Returns
 
 
 [See definitions](#definitions)
-[1]: #-__init__(self,-databasePath-:-str-=-"database.db",-tableName-:-str-=-"images")-->-None
 
 # Usage
 - <h3> Importing & Creating Handler </h3>
