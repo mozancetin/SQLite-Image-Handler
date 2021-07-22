@@ -13,8 +13,6 @@ Function Name | Parameters | Returns
 **[deleteImage]** | **imageName** : *str* | - |
 **[updateImage]** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
 
-<br>
-
 [See definitions](#definitions)
 
 [init]: #initselfdatabasepath--str--databasedb-tablename--str--images---none
@@ -34,6 +32,7 @@ Function Name | Parameters | Returns
 [updateImage]: #updateimageself-imagename--str--none-newimagebytes--bytes--none-newextensiontype--str--none---none
 
 # Usage
+
 - <h3>Importing & Creating Handler</h3>
 
 ```python
@@ -87,6 +86,8 @@ print(isExists)
 bytesOfImage, extensionType = handler.imageSelector(path=r"C:\Users\mozancetin\Desktop\myimage1.png")
 print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensionType)
 ```
+<hr>
+<br>
 
 # Definitions
 
@@ -138,6 +139,9 @@ print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensi
 ### updateImage(self, imageName : str = None, newImageBytes : bytes = None, newExtensionType : str = None) -> None
 
 - Updates image *by name in database*.
+
+<hr>
+<br>
 
 # TODO's
 - [x] Write a readme file
