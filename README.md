@@ -19,7 +19,7 @@ Function Name | Parameters | Returns
 ```python
 from SQLiteImageHandler.SQLiteImageHandler import ImageHandler
 
-handler = SQLiteImageHandler(databasePath = "database.db", tableName = "myimages")
+handler = ImageHandler(databasePath = "database.db", tableName = "myimages")
 ```
 <hr>
 
