@@ -4,18 +4,20 @@ Simple to use image handler for python sqlite3.
 # Functions
 Function Name | Parameters | Returns
 ------------- | ---------- | -------
-**init** | **databasePath** : *str* <br> **tableName** : *str* | - |
-**startConnection** | - | - |
-**imageSelector** | **path** : *str* | **bytesContent** : *bytes* <br> **extensionType** : *str* |
-**addImage** | **imageName** : *str* <br> **imageBytes** : *bytes* <br> **extensionType** : *str* | - |
-**getSaveImage** | **imageName** : *str* <br> **savePath** : *str* | - |
-**isImageExists** | **imageName** : *str* | **isExists** : *bool* |
-**deleteImage** | **imageName** : *str* | - |
-**updateImage** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
+**[init][1]** | **databasePath** : *str* <br> **tableName** : *str* | - |
+**[startConnection][2]** | - | - |
+**[imageSelector][3]** | **path** : *str* | **bytesContent** : *bytes* <br> **extensionType** : *str* |
+**[addImage][4]** | **imageName** : *str* <br> **imageBytes** : *bytes* <br> **extensionType** : *str* | - |
+**[getSaveImage][5]** | **imageName** : *str* <br> **savePath** : *str* | - |
+**[isImageExists][6]** | **imageName** : *str* | **isExists** : *bool* |
+**[deleteImage][7]** | **imageName** : *str* | - |
+**[updateImage][8]** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
 
 <br>
 
+
 [See definitions](#definitions)
+[1]: #-__init__(self,-databasePath-:-str-=-"database.db",-tableName-:-str-=-"images")-->-None
 
 # Usage
 - <h3> Importing & Creating Handler </h3>
@@ -74,6 +76,54 @@ print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensi
 
 # Definitions
 
+### __init__(self, databasePath : str = "database.db", tableName : str = "images") -> None
+
+- Sets the *self.databasePath*, *self.tableName* and calls *startConnection()* func.
+
+<hr>
+
+### startConnection(self) -> None
+
+- Starts the connection with SQLite Database.
+
+<hr>
+
+### imageSelector(self, path : str = None) -> bytesContent[bytes], extensionType[str]
+
+- Selects an image and returns the image's *bytes content* and *extension type*.
+- **bytesContent[bytes]:** *Bytes content of image.*
+- **extensionType[str]:** *Extension type like png, jpg or something...*
+
+<hr>
+
+### addImage(self, imageName : str, imageBytes : bytes, extensionType : str = "png") -> None
+
+- Adds an image to database.
+
+<hr>
+
+### getSaveImage(self, imageName : str = None, savePath : str = "savedImage") -> None
+
+- Saves the *previously saved image in the database* as an *image to the given path*.
+
+<hr>
+
+### isImageExists(self, imageName : str = None) -> isExists[bool]
+
+- Checks if image exists in database *by image name*.
+- **isExists[bool]:** *True if image exists in the database otherwise False*
+
+<hr>
+
+### deleteImage(self, imageName : str = None) -> None
+
+- Deletes image *by name in database*.
+
+<hr>
+
+### updateImage(self, imageName : str = None, newImageBytes : bytes = None, newExtensionType : str = None) -> None
+
+- Updates image *by name in database*.
 
 # TODO's
 - [x] Write a readme file
@@ -83,5 +133,5 @@ print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensi
 - [x] Raise some errors
 - [x] Add Usage to readme
 - [x] Upload to pypi
-- [ ] Write a description of each function for README
+- [x] Write a description of each function for README
 - [ ] Add some cmd things
