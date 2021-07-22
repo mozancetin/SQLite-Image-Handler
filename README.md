@@ -35,7 +35,7 @@ handler.addImage(imageName = "Image 1", *handler.imageSelector(path = r"C:\Users
 ```python
 # If you want, use a save name like "savedImage" instead of "savedImage.png"
 # ..because whatever you write, it will automatically fetch the extension from the database.
-handler.getSaveImage(imageName = "Image 1", savePath = r"C:\Users\mozancetin\Desktop\savedImage.png")ü
+handler.getSaveImage(imageName = "Image 1", savePath = r"C:\Users\mozancetin\Desktop\savedImage.png")
 ```
 <hr>
 
