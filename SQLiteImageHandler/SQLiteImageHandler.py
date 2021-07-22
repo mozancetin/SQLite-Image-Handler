@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-class SQLiteImageHandler():
+class ImageHandler:
 
     def __init__(self, databasePath : str = "database.db", tableName : str = "images"):
         self.databasePath = databasePath
@@ -79,6 +79,11 @@ class SQLiteImageHandler():
         """
         if imageName == None:
             raise ValueError("Give me an image boss. (imageName parameter has not declared.)")
+
+        path, extension = os.path.splitext(savePath)
+
+        if extension != "":
+            savePath = path
 
         try:
             self.cursor.execute(f"SELECT * FROM {self.tableName} WHERE Name = ?", (imageName,))
