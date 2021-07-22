@@ -12,6 +12,7 @@ Function Name | Parameters | Returns
 **isImageExists** | **imageName** : *str* | **isExists** : *bool* |
 **deleteImage** | **imageName** : *str* | - |
 **updateImage** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
+[See definitions](#-definitions)
 
 # Usage
 - <h3> Importing & Creating Handler </h3>
@@ -67,6 +68,9 @@ print(isExists)
 bytesOfImage, extensionType = handler.imageSelector(path=r"C:\Users\mozancetin\Desktop\myimage1.png")
 print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensionType)
 ```
+
+# Definitions
+
 
 # TODO's
 - [x] Write a readme file
