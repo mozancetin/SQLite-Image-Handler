@@ -12,7 +12,10 @@ Function Name | Parameters | Returns
 **isImageExists** | **imageName** : *str* | **isExists** : *bool* |
 **deleteImage** | **imageName** : *str* | - |
 **updateImage** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
-[See definitions](#-definitions)
+
+<br>
+
+[See definitions](#definitions)
 
 # Usage
 - <h3> Importing & Creating Handler </h3>
