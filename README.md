@@ -4,14 +4,14 @@ Simple to use image handler for python sqlite3.
 # Functions
 Function Name | Parameters | Returns
 ------------- | ---------- | -------
-**[init](#-__init__(self,-databasePath-:-str-=-"database.db",-tableName-:-str-=-"images")-->-None)** | **databasePath** : *str* <br> **tableName** : *str* | - |
-**[startConnection][2]** | - | - |
-**[imageSelector][3]** | **path** : *str* | **bytesContent** : *bytes* <br> **extensionType** : *str* |
-**[addImage][4]** | **imageName** : *str* <br> **imageBytes** : *bytes* <br> **extensionType** : *str* | - |
-**[getSaveImage][5]** | **imageName** : *str* <br> **savePath** : *str* | - |
-**[isImageExists][6]** | **imageName** : *str* | **isExists** : *bool* |
-**[deleteImage][7]** | **imageName** : *str* | - |
-**[updateImage][8]** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
+**init** | **databasePath** : *str* <br> **tableName** : *str* | - |
+**startConnection** | - | - |
+**imageSelector** | **path** : *str* | **bytesContent** : *bytes* <br> **extensionType** : *str* |
+**addImage** | **imageName** : *str* <br> **imageBytes** : *bytes* <br> **extensionType** : *str* | - |
+**getSaveImage** | **imageName** : *str* <br> **savePath** : *str* | - |
+**isImageExists** | **imageName** : *str* | **isExists** : *bool* |
+**deleteImage** | **imageName** : *str* | - |
+**updateImage** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
 
 <br>
 
@@ -75,7 +75,7 @@ print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensi
 
 # Definitions
 
-### __init__(self, databasePath : str = "database.db", tableName : str = "images") -> None
+### __init__(self,databasePath : str = "database.db", tableName : str = "images") -> None
 
 - Sets the *self.databasePath*, *self.tableName* and calls *startConnection()* func.
 
