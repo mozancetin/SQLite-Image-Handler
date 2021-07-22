@@ -4,22 +4,37 @@ Simple to use image handler for python sqlite3.
 # Functions
 Function Name | Parameters | Returns
 ------------- | ---------- | -------
-**init** | **databasePath** : *str* <br> **tableName** : *str* | - |
-**startConnection** | - | - |
-**imageSelector** | **path** : *str* | **bytesContent** : *bytes* <br> **extensionType** : *str* |
-**addImage** | **imageName** : *str* <br> **imageBytes** : *bytes* <br> **extensionType** : *str* | - |
-**getSaveImage** | **imageName** : *str* <br> **savePath** : *str* | - |
-**isImageExists** | **imageName** : *str* | **isExists** : *bool* |
-**deleteImage** | **imageName** : *str* | - |
-**updateImage** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
+**[init]** | **databasePath** : *str* <br> **tableName** : *str* | - |
+**[startConnection]** | - | - |
+**[imageSelector]** | **path** : *str* | **bytesContent** : *bytes* <br> **extensionType** : *str* |
+**[addImage]** | **imageName** : *str* <br> **imageBytes** : *bytes* <br> **extensionType** : *str* | - |
+**[getSaveImage]** | **imageName** : *str* <br> **savePath** : *str* | - |
+**[isImageExists]** | **imageName** : *str* | **isExists** : *bool* |
+**[deleteImage]** | **imageName** : *str* | - |
+**[updateImage]** | **imageName** : *str* <br> **newImageBytes** : *bytes* <br> **newExtensionType** : *str* | - |
 
 <br>
 
-
 [See definitions](#definitions)
 
+[init]: #initselfdatabasepath--str--databasedb-tablename--str--images---none
+
+[startConnection]: #startconnectionself---none
+
+[imageSelector]: #imageselectorself-path--str--none---bytescontentbytes-extensiontypestr
+
+[addImage]: #addimageself-imagename--str-imagebytes--bytes-extensiontype--str--png---none
+
+[getSaveImage]: #getsaveimageself-imagename--str--none-savepath--str--savedimage---none
+
+[isImageExists]: #isimageexistsself-imagename--str--none---isexistsbool
+
+[deleteImage]: #deleteimageself-imagename--str--none---none
+
+[updateImage]: #updateimageself-imagename--str--none-newimagebytes--bytes--none-newextensiontype--str--none---none
+
 # Usage
-- <h3> Importing & Creating Handler </h3>
+- <h3>Importing & Creating Handler</h3>
 
 ```python
 from SQLiteImageHandler.SQLiteImageHandler import ImageHandler
