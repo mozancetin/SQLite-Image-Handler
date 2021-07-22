@@ -17,7 +17,7 @@ Function Name | Parameters | Returns
 - <h3> Importing & Creating Handler </h3>
 
 ```python
-from SQLiteImageHandler import ImageHandler
+from SQLiteImageHandler.SQLiteImageHandler import ImageHandler
 
 handler = SQLiteImageHandler(databasePath = "database.db", tableName = "myimages")
 ```
