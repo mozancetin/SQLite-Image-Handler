@@ -1,5 +1,7 @@
 import sqlite3
 import os
+import sys
+from typing import Tuple
 
 class ImageHandler:
 
@@ -8,7 +10,7 @@ class ImageHandler:
         self.tableName = tableName
         self.startConnection()
 
-    def startConnection(self):
+    def startConnection(self) -> None:
         """
         ### Explanation
         Starts the connection with SQLite Database.
@@ -19,7 +21,7 @@ class ImageHandler:
         self.cursor.execute(f"CREATE TABLE IF NOT EXISTS {self.tableName} (Name TEXT, Data BLOB, Type TEXT)")
         self.connection.commit()
 
-    def imageSelector(self, path : str = None):
+    def imageSelector(self, path : str = None) -> Tuple[bytes, str]:
         """
         ### Explanation
         Selects an image and returns the image's bytes content and extension type.
@@ -44,7 +46,7 @@ class ImageHandler:
         extensionType = os.path.splitext(path)[1][1:]
         return bytesContent, extensionType
 
-    def addImage(self, imageName : str, imageBytes : bytes, extensionType : str = "png"):
+    def addImage(self, imageName : str, imageBytes : bytes, extensionType : str = "png") -> None:
         """
         ### Explanation
         Adds an image to database.
@@ -66,7 +68,7 @@ class ImageHandler:
         except Exception as error:
             print(error)
 
-    def getSaveImage(self, imageName : str = None, savePath : str = "savedImage"):
+    def getSaveImage(self, imageName : str = None, savePath : str = "savedImage") -> None:
         """
         ### Explanation
         Saves the previously saved image in the database as an image to the given path.
@@ -96,7 +98,9 @@ class ImageHandler:
         except Exception as error:
             print(error)
 
-    def isImageExists(self, imageName : str = None):
+        print(f"{imageName} saved successfully. Path:\n{savePath}")
+
+    def isImageExists(self, imageName : str = None) -> bool:
         """
         ### Explanation
         Checks if image exists in database by image name.
@@ -122,7 +126,7 @@ class ImageHandler:
         except Exception as error:
             print("Error occurred in isImageExists func. Error: " + str(error))
 
-    def deleteImage(self, imageName : str = None):
+    def deleteImage(self, imageName : str = None) -> None:
         """
         ### Explanation
         Deletes image by name in database.
@@ -146,7 +150,7 @@ class ImageHandler:
         except Exception as error:
             print(error)
 
-    def updateImage(self, imageName : str = None, newImageBytes : bytes = None, newExtensionType : str = None):
+    def updateImage(self, imageName : str = None, newImageBytes : bytes = None, newExtensionType : str = None) -> None:
         """
         ### Explanation
         Updates image by name in database.
