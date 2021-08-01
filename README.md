@@ -143,6 +143,64 @@ print("Bytes Length: " + str(len(bytesOfImage)) + "\nExtension Type: " + extensi
 <hr>
 <br>
 
+# CMD Things
+
+```cmd
+C:\Users\mozancetin\Desktop\Handler>python SQLiteImageHandler
+
+usage: SQLiteImageHandler [-h] [-v] [--database-path DBPATH] [--table-name TABLENAME] [-a] [-sn SAVE_NAME]
+                          [-ip IMAGE_PATH] [-s] [-sdn SAVED_NAME] [-sp SAVE_PATH] [-u] [-in IMAGE_NAME]
+                          [-uip UPDATE_IMAGE_PATH] [-d] [-c] [-is]
+
+SQLite Image Handler.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+  --database-path DBPATH
+                        database path.
+  --table-name TABLENAME
+                        table name of the database
+
+Add an Image:
+  Adding an image to the database.
+
+  -a, --add-image       Adds an image to database. (Requires -sn and -ip)
+  -sn SAVE_NAME, --save-name SAVE_NAME
+                        Save name of image.
+  -ip IMAGE_PATH, --image-path IMAGE_PATH
+                        Path of the selected image
+
+Save an Image:
+  Saving image from database to computer.
+
+  -s, --save-image      Saves the previously saved image in the database as an image to the given path. (Requires -sdn
+                        and -sp)
+  -sdn SAVED_NAME, --saved-name SAVED_NAME
+                        Saved name of image in the database.
+  -sp SAVE_PATH, --save-path SAVE_PATH
+                        Save path. (default: savedImage.png)
+
+Update an Image:
+  Updating the image in the database.
+
+  -u, --update-image    Updates image by name in database. (Requires -in and -uip)
+  -in IMAGE_NAME, --image-name IMAGE_NAME
+                        Saved name of image in the database.
+  -uip UPDATE_IMAGE_PATH, --update-image-path UPDATE_IMAGE_PATH
+                        Path of the selected image
+
+Delete an Image:
+  Deleting an image from database
+
+  -d, --delete          Deletes image by name in database. (Requires -in)
+
+Other:
+  -c, --check           Checks if image exists in database by image name. (Requires -in)
+  -is, --image-selector
+                        Selects an image and returns the image's bytes length and extension type. (Requires -ip)
+```
+
 # TODO's
 - [x] Write a readme file
 - [x] Add different types of images (Right now just png is supported)
